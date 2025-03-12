@@ -20,17 +20,13 @@ def parse_input(user_input):
 
 @input_error
 def add_contact(args, contacts):
-    if len(args) < 2:
-        raise ValueError
-    name, phone = args
+    name, phone = args  # Залишаємо лише розпакування
     contacts[name.lower()] = phone
     return "Contact added."
 
 @input_error
 def change_contact(args, contacts):
-    if len(args) < 2:
-        raise ValueError
-    name, phone = args
+    name, phone = args  # Залишаємо лише розпакування
     if name.lower() in contacts:
         contacts[name.lower()] = phone
         return "Contact changed."
@@ -38,10 +34,8 @@ def change_contact(args, contacts):
 
 @input_error
 def phone_contact(args, contacts):
-    if len(args) < 1:
-        raise ValueError
-    username = args[0].lower()
-    if username in contacts:
+    username = args[0]  # Залишаємо лише розпакування
+    if username.lower() in contacts:
         return contacts[username]
     raise KeyError
 
@@ -51,7 +45,7 @@ def show_all_contacts(contacts):
         return "No contacts found."
     result = []
     for name, phone in contacts.items():
-        result.append(f"{name}:{phone}")  # Формат "name:phone" без пробілу
+        result.append(f"{name}:{phone}")
     return "\n".join(result)
 
 def main():
@@ -65,17 +59,17 @@ def main():
         elif cmd == "hello":
             _ = input("Enter the argument for the command ")
         elif cmd == "add":
-            if len(args) < 2:  # Якщо аргументів менше 2, просимо ввести ще
+            if len(args) < 2:  # Перевіряємо, чи є два аргументи
                 _ = input("Enter the argument for the command ")
             else:
                 print(add_contact(args, contacts))
         elif cmd == "change":
-            if len(args) < 2:
+            if len(args) < 2:  # Перевіряємо, чи є два аргументи
                 _ = input("Enter the argument for the command ")
             else:
                 print(change_contact(args, contacts))
         elif cmd == "phone":
-            if len(args) < 1:
+            if len(args) < 1:  # Перевіряємо, чи є хоча б один аргумент
                 _ = input("Enter the argument for the command ")
             else:
                 print(phone_contact(args, contacts))
