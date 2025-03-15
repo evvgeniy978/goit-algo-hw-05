@@ -3,7 +3,7 @@ from typing import Callable
 
 def generator_numbers(text: str):
     # Знаходимо всі числа в тексті, які мають пробіл перед собою
-    numbers = re.findall(r'\s\d+\.\d+', text)
+    numbers = re.findall(r'\d+\.\d+', text)
 
     # Перетворюємо значення чисел у float, прибираючи пробіл перед числом
     profits = [float(num.strip()) for num in numbers]
